@@ -2,11 +2,11 @@ from fastapi import APIRouter, Depends, HTTPException
 from sqlalchemy import select
 from sqlalchemy.ext.asyncio import AsyncSession
 
-from server.database.session import get_db
-from server.schemas.auth import RegisRequest, LoginRequest
-from server.database.models.users import Users
-from server.security.hash import hash_password, verify_password
-from server.security.jwt import create_jwt_token, verify_jwt_token
+from app.database.session import get_db
+from app.schemas.auth import RegisRequest, LoginRequest
+from app.database.models.users import Users
+from app.security.hash import hash_password, verify_password
+from app.security.jwt import create_jwt_token, verify_jwt_token
 
 
 router = APIRouter(
@@ -49,10 +49,10 @@ async def login(user_data : LoginRequest, db : AsyncSession = Depends(get_db)) :
 
         if not db_user:
             raise HTTPException(detail="Bunday foydalanuvchi mavjud emas.", status_code=400)
-        
+
         if not verify_password(user_data.password, db_user.password):
             raise HTTPException(detail="Password xato!", status_code=401)
-        
+
         token = create_jwt_token(db_user.id)
         return {
             "message" : "Kirish mufaqqiyatli amalga oshirildi.",
@@ -74,7 +74,7 @@ async def get_token(token : str , db : AsyncSession = Depends(get_db)):
 
         if not user:
             raise HTTPException("Foydalanuvchi topilmadi. ", status_code=404)
-        
+
         return {
             "user_id": user.id,
             "email": user.email,

@@ -3,9 +3,9 @@ from fastapi import APIRouter, Depends, HTTPException
 from sqlalchemy import select
 from sqlalchemy.ext.asyncio import AsyncSession
 
-from server.database.models.todo import TodoDB
-from server.schemas.todo import TodoCreate, TodoUpdate, TodoResponse, DeadlineUpdate
-from server.database.session import get_db
+from app.database.models.todo import TodoDB
+from app.schemas.todo import TodoCreate, TodoUpdate, TodoResponse, DeadlineUpdate
+from app.database.session import get_db
 
 router = APIRouter(
     prefix='/todos',
