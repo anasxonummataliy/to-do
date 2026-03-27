@@ -1,10 +1,7 @@
 from app.database.models.todo import TodoDB
 
 
-ModelType =
-
-
-class TodoRepository(ModelType):
+class TodoRepository():
     def __init__(self, session):
         self.session = session
 
