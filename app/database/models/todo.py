@@ -1,8 +1,8 @@
 from sqlalchemy import Column, DateTime, String, Integer, Boolean
 
-from app.database.base import Base
+from app.database.base import BaseModel
 
-class TodoDB(Base):
+class TodoDB(BaseModel):
     __tablename__ = "todos"
 
     id = Column(Integer, primary_key=True)

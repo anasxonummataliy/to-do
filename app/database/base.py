@@ -2,7 +2,7 @@ from app.database.session import async_engine
 from sqlalchemy import DateTime, func
 from sqlalchemy.orm import DeclarativeBase, declared_attr, mapped_column
 
-class Base(DeclarativeBase):
+class BaseModel(DeclarativeBase):
     @declared_attr
     def create_at(cls):
         return mapped_column(DateTime, default=func.now())
