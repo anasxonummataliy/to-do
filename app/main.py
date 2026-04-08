@@ -5,7 +5,7 @@ from app.database.base import create_db_and_tables
 from fastapi import Depends, FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 
-from app.api.router import auth_router, todo_router
+from app.api import auth_router, todo_router
 
 auth_scheme = HTTPBearer(auto_error=False)
 

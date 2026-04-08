@@ -14,3 +14,9 @@ class BaseRepository(Generic[ModelType]):
     def __init__(self, model: Type[ModelType], db: AsyncSession):
         self.model = model
         self.db = db
+
+    async def create(self, obj: ModelType) -> ModelType:
+        self.db.add(obj)
+        await self.db.commit()
+        await self.db.refresh(obj)
+        return obj
