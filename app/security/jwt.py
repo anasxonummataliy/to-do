@@ -3,7 +3,7 @@ from datetime import  datetime, timedelta
 from fastapi import HTTPException
 from app.core.config import settings
 
-SECRET_KEY = settings.
+SECRET_KEY = settings.jwt_token
 ALGORITHM = "HS256"
 
 
