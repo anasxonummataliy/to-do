@@ -359,6 +359,20 @@ trio = ["trio (>=0.23)"]
 wmi = ["wmi (>=1.5.1)"]
 
 [[package]]
+name = "dotenv"
+version = "0.9.9"
+description = "Deprecated package"
+optional = false
+python-versions = "*"
+groups = ["main"]
+files = [
+    {file = "dotenv-0.9.9-py2.py3-none-any.whl", hash = "sha256:29cf74a087b31dafdb5a446b6d7e11cbce8ed2741540e2339c69fbef92c94ce9"},
+]
+
+[package.dependencies]
+python-dotenv = "*"
+
+[[package]]
 name = "email-validator"
 version = "2.2.0"
 description = "A robust email address syntax and deliverability validation library."
@@ -908,4 +922,4 @@ standard = ["colorama (>=0.4) ; sys_platform == \"win32\"", "httptools (>=0.6.3)
 [metadata]
 lock-version = "2.1"
 python-versions = ">=3.13"
-content-hash = "542331db5ada4c5d61a7397dd538d82d4437f048a97c439f07a2bd2ed0f65569"
+content-hash = "9f118643bdf4c4d1fbf020645e4ac41a9311f2354621b3a4daa90c9e615eba41"

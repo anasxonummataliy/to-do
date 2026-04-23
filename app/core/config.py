@@ -7,7 +7,7 @@ class Settings(BaseSettings):
     SECRET_KEY: str = "change-this-in-production"
     ALGORITHM: str = "HS256"
 
-    jwt_token: str = "claksdlkansdkln0-asndjansdjn0-asdasd"
+    jwt_token: str = "x9#Kd!2Lp@qW7mN$zR1vT8sY%uC4eB6"
 
 
 @lru_cache
