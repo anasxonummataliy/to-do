@@ -1,12 +1,29 @@
-from pydantic import BaseModel, EmailStr
-from typing import Optional
+from pydantic import BaseModel
 
 
-class RegisRequest(BaseModel):
-    full_name : Optional[str] = None
-    email : EmailStr
-    password : str
+class Token(BaseModel):
+    """JWT token javob schema."""
+
+    access_token: str
+    refresh_token: str
+    token_type: str = "bearer"
+
+
+class TokenPayload(BaseModel):
+    """Token ichidagi ma'lumotlar."""
+
+    sub: str
+    type: str
+
+
+class RefreshTokenRequest(BaseModel):
+    """Refresh token so'rovi."""
+
+    refresh_token: str
+
 
 class LoginRequest(BaseModel):
-    email : EmailStr
-    password : str
+    """Login so'rovi (JSON body orqali)."""
+
+    email: str
+    password: str

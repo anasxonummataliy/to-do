@@ -1,28 +1,62 @@
 from datetime import datetime
 from typing import Optional
-from pydantic import BaseModel
+from pydantic import BaseModel, Field
+from app.models.todo import Priority
 
 
-class TodoCreate(BaseModel):
-    title: str
-    description: str
-        
+# ─── Base ──────────────────────────────────────────────────────────────────────
+
+
+class TodoBase(BaseModel):
+    title: str = Field(..., min_length=1, max_length=200)
+    description: Optional[str] = Field(None, max_length=2000)
+    priority: Priority = Priority.MEDIUM
+
+
+# ─── Create ────────────────────────────────────────────────────────────────────
+
+
+class TodoCreate(TodoBase):
+    """Yangi todo yaratish schema."""
+
+    pass
+
+
+# ─── Update ────────────────────────────────────────────────────────────────────
+
+
 class TodoUpdate(BaseModel):
-    title: Optional[str] = None
-    description: Optional[str] = None
-    completed: Optional[bool] = None
+    """Todo yangilash schema (barcha maydonlar optional)."""
 
-class TodoResponse(BaseModel):
-    id : int 
-    title : str
-    description : Optional[str] = None
-    completed : bool
-    deadline : Optional[datetime] = None
-    created_at : datetime
-
-    class Config:
-        orm_mode : True
+    title: Optional[str] = Field(None, min_length=1, max_length=200)
+    description: Optional[str] = Field(None, max_length=2000)
+    priority: Optional[Priority] = None
+    is_completed: Optional[bool] = None
 
 
-class DeadlineUpdate(BaseModel):
-    deadline: datetime
+# ─── Response ──────────────────────────────────────────────────────────────────
+
+
+class TodoResponse(TodoBase):
+    """Todo javob schema."""
+
+    id: int
+    is_completed: bool
+    owner_id: int
+    created_at: datetime
+    updated_at: datetime
+
+    model_config = {"from_attributes": True}
+
+
+# ─── List Response ─────────────────────────────────────────────────────────────
+
+
+class TodoListResponse(BaseModel):
+    """Sahifalangan todo ro'yxati."""
+
+    items: list[TodoResponse]
+    total: int
+    page: int
+    page_size: int
+    total_pages: int

@@ -1,4 +1,8 @@
-from .auth import router as auth_router
-from .todo import router as todo_router
+from fastapi import APIRouter
+import auth, users, todos
 
-__all__ = ["auth_router", "todo_router"]
+api_router = APIRouter()
+
+api_router.include_router(auth.router)
+api_router.include_router(users.router)
+api_router.include_router(todos.router)
