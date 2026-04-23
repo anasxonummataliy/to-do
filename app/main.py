@@ -1,18 +1,18 @@
 from contextlib import asynccontextmanager
 
 from fastapi.security import HTTPBearer
-from app.database.base import create_db_and_tables
+from app.database.init_db import create_tables
 from fastapi import Depends, FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 
-from app.api import auth_router, todo_router
+from app.api import api_router
 
 auth_scheme = HTTPBearer(auto_error=False)
 
 
 @asynccontextmanager
 async def lifespan(app: FastAPI):
-    await create_db_and_tables()
+    await create_tables()
     yield
 
 
@@ -39,5 +39,4 @@ async def start():
     return {"message": "Server is working!"}
 
 
-app.include_router(auth_router)
-app.include_router(todo_router)
+app.include_router(api_router)
