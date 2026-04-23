@@ -3,9 +3,9 @@ from typing import Optional
 from sqlalchemy.orm import Session
 
 from app.core.exceptions import NotFoundException, ForbiddenException
-from app.models.todo import Todo, Priority
-from app.models.user import User
-from app.repositories.todo_repository import TodoRepository
+from app.database.models import Todo, Priority
+from app.database.models import User
+from app.repositories import TodoRepository
 from app.schemas.todo import TodoCreate, TodoUpdate, TodoListResponse, TodoResponse
 
 

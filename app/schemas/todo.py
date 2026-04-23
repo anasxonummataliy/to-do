@@ -1,7 +1,7 @@
 from datetime import datetime
 from typing import Optional
 from pydantic import BaseModel, Field
-from app.models.todo import Priority
+from app.database.models import Priority
 
 
 # ─── Base ──────────────────────────────────────────────────────────────────────

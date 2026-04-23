@@ -12,8 +12,8 @@ from app.core.exceptions import (
     UnauthorizedException,
     BadRequestException,
 )
-from app.models.user import User
-from app.repositories.user_repository import UserRepository
+from app.database.models import User
+from app.repositories import UserRepository
 from app.schemas.auth import Token, LoginRequest, RefreshTokenRequest
 from app.schemas.user import UserCreate
 

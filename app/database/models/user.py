@@ -2,8 +2,8 @@ from typing import List, Optional
 from sqlalchemy import String, Boolean
 from sqlalchemy.orm import Mapped, mapped_column, relationship
 
-from app.db.base import Base
-from app.models.mixins import PrimaryKeyMixin, TimestampMixin
+from app.database.base import Base
+from app.database.models import PrimaryKeyMixin, TimestampMixin
 
 
 class User(Base, PrimaryKeyMixin, TimestampMixin):

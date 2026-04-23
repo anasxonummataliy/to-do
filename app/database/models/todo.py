@@ -1,11 +1,13 @@
-from typing import Optional
+from typing import TYPE_CHECKING, Optional
 from sqlalchemy import String, Boolean, Text, ForeignKey, Enum as SAEnum
 from sqlalchemy.orm import Mapped, mapped_column, relationship
 import enum
 
-from app.db.base import Base
-from app.models.mixins import PrimaryKeyMixin, TimestampMixin
+from app.database.base import Base
+from app.database.models import PrimaryKeyMixin, TimestampMixin
 
+if TYPE_CHECKING:
+    from app.database.models import User
 
 class Priority(str, enum.Enum):
     LOW = "low"
