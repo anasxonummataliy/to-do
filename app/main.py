@@ -1,7 +1,6 @@
 from contextlib import asynccontextmanager
 
 from fastapi.security import HTTPBearer
-from app.database.init_db import create_tables
 from fastapi import Depends, FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 
@@ -12,7 +11,6 @@ auth_scheme = HTTPBearer(auto_error=False)
 
 @asynccontextmanager
 async def lifespan(app: FastAPI):
-    await create_tables()
     yield
 
 
