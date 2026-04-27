@@ -13,7 +13,6 @@ oauth2_scheme = OAuth2PasswordBearer(tokenUrl="/api/v1/auth/login")
 
 
 def get_db() -> Generator[Session, None, None]:
-    """Database session dependency."""
     db = SessionLocal()
     try:
         yield db
@@ -25,7 +24,6 @@ def get_current_user(
     token: str = Depends(oauth2_scheme),
     db: Session = Depends(get_db),
 ) -> User:
-    """Joriy autentifikatsiya qilingan foydalanuvchini qaytaradi."""
     payload = decode_token(token)
     if not payload or payload.get("type") != "access":
         raise UnauthorizedException("Invalid or expired token")
@@ -45,7 +43,6 @@ def get_current_user(
 def get_current_active_user(
     current_user: User = Depends(get_current_user),
 ) -> User:
-    """Faol foydalanuvchini qaytaradi."""
     if not current_user.is_active:
         raise ForbiddenException("Inactive user")
     return current_user

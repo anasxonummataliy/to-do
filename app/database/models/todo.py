@@ -3,11 +3,12 @@ from sqlalchemy import String, Boolean, Text, ForeignKey, Enum as SAEnum
 from sqlalchemy.orm import Mapped, mapped_column, relationship
 import enum
 
-from app.database.base import Base
-from app.database.models import PrimaryKeyMixin, TimestampMixin
+from app.database.base import Base, PrimaryKeyMixin, TimestampMixin
+
 
 if TYPE_CHECKING:
     from app.database.models import User
+
 
 class Priority(str, enum.Enum):
     LOW = "low"

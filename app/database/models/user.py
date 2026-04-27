@@ -2,16 +2,13 @@ from typing import TYPE_CHECKING, List, Optional
 from sqlalchemy import String, Boolean
 from sqlalchemy.orm import Mapped, mapped_column, relationship
 
-from app.database.base import Base
-from app.database.models import PrimaryKeyMixin, TimestampMixin
+from app.database.base import Base, PrimaryKeyMixin, TimestampMixin
 
 if TYPE_CHECKING:
     from .todo import Todo
 
 
 class User(Base, PrimaryKeyMixin, TimestampMixin):
-    """Foydalanuvchi modeli."""
-
     __tablename__ = "users"
 
     email: Mapped[str] = mapped_column(

@@ -9,12 +9,10 @@ pwd_context = CryptContext(schemes=["bcrypt"], deprecated="auto")
 
 
 def hash_password(password: str) -> str:
-    """Parolni hash qiladi."""
     return pwd_context.hash(password)
 
 
 def verify_password(plain_password: str, hashed_password: str) -> bool:
-    """Parolni tekshiradi."""
     return pwd_context.verify(plain_password, hashed_password)
 
 
@@ -22,7 +20,6 @@ def create_access_token(
     subject: Union[str, int],
     expires_delta: Optional[timedelta] = None,
 ) -> str:
-    """Access token yaratadi."""
     expire = datetime.now(timezone.utc) + (
         expires_delta or timedelta(minutes=settings.ACCESS_TOKEN_EXPIRE_MINUTES)
     )
@@ -35,7 +32,6 @@ def create_access_token(
 
 
 def create_refresh_token(subject: Union[str, int]) -> str:
-    """Refresh token yaratadi."""
     expire = datetime.now(timezone.utc) + timedelta(
         days=settings.REFRESH_TOKEN_EXPIRE_DAYS
     )
@@ -48,7 +44,6 @@ def create_refresh_token(subject: Union[str, int]) -> str:
 
 
 def decode_token(token: str) -> Optional[dict]:
-    """Tokenni decode qiladi. Xato bo'lsa None qaytaradi."""
     try:
         payload = jwt.decode(
             token, settings.SECRET_KEY, algorithms=[settings.ALGORITHM]
